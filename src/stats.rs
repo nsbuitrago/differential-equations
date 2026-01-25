@@ -3,10 +3,13 @@
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
-use std::{
-    ops::{Add, AddAssign},
-    time::Instant,
-};
+#[cfg(feature = "wasm")]
+use web_time::Instant;
+
+use std::ops::{Add, AddAssign};
+
+#[cfg(not(feature = "wasm"))]
+use std::time::Instant;
 
 use crate::traits::Real;
 
